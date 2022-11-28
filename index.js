@@ -37,6 +37,12 @@ async function run() {
             const products = await productsCollection.find(query).toArray();
             res.send(products);
         })
+        app.get('/products/:email', async (req, res) => {
+            const email = req.params.email;
+            let query = { email: email };
+            const products = await productsCollection.find(query).toArray();
+            res.send(products);
+        })
 
 
     }
