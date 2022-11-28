@@ -66,6 +66,12 @@ async function run() {
             const booking = await bookingCollection.insertOne(bookingdata);
             res.send(booking);
         })
+        app.get('/booking/:email', async (req, res) => {
+            const email = req.params.email;
+            let query = { email: email }
+            const booking = await bookingCollection.find(query).toArray();
+            res.send(booking);
+        })
 
 
     }
