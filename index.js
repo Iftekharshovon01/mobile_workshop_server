@@ -72,6 +72,25 @@ async function run() {
             const booking = await bookingCollection.find(query).toArray();
             res.send(booking);
         })
+        app.get('/users/:email', async (req, res) => {
+            const user = req.params.email;
+            const query = { email: user }
+            const insert = await usersCollection.findOne(query);
+            res.send(insert);
+        })
+        app.get('/users/seller/:email', async (req, res) => {
+            const email = req.params.email;
+            const query = { email }
+            const user = await usersCollection.findOne(query);
+            res.send({ seller: user?.role === 'seller' });
+        });
+        app.get('/users/admin/:email', async (req, res) => {
+            const email = req.params.email;
+            const query = { email }
+            const user = await usersCollection.findOne(query);
+            res.send({ admin: user?.role === 'admin' });
+        });
+
 
 
     }
