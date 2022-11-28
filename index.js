@@ -91,7 +91,16 @@ async function run() {
             res.send({ admin: user?.role === 'admin' });
         });
 
-
+        app.get('/user/buyer', async (req, res) => {
+            const query = { role: 'buyer' }
+            const find = await usersCollection.find(query).toArray();
+            res.send(find);
+        })
+        app.get('/user/seller', async (req, res) => {
+            const query = { role: 'seller' }
+            const find = await usersCollection.find(query).toArray();
+            res.send(find);
+        })
 
     }
     finally { }
